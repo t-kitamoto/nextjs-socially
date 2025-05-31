@@ -17,7 +17,7 @@ datasource db {
 model User {
   id        String   @id @default(cuid())
   email     String   @unique
-  userId    String   @unique
+  username  String   @unique
   clerkId   String   @unique
   name      String?
   bio       String?
@@ -27,7 +27,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // Relations
+  // Relations: 
   posts    Post[]
   comments Comment[]
   likes    Like[]
@@ -48,7 +48,7 @@ model Post {
   updatedAt DateTime @updatedAt
 
   // Relations
-  author        User           @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  author        User           @relation(fields: [authorId], references: [id], onDelete: Cascade) // cascade delete means delete all posts if author is deleted
   comments      Comment[]
   likes         Like[]
   notifications Notification[]
@@ -62,11 +62,11 @@ model Comment {
   createdAt DateTime @default(now())
 
   // Relations
-  author       User           @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  post         Post           @relation(fields: [postId], references: [id], onDelete: Cascade)
-  Notification Notification[]
+  author        User           @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  post          Post           @relation(fields: [postId], references: [id], onDelete: Cascade)
+  notifications Notification[]
 
-  @@index([authorId, postId])
+  @@index([authorId, postId]) // composite index for faster queries
 }
 
 model Like {
@@ -79,8 +79,8 @@ model Like {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, postId])
-  @@index([userId, postId])
+  @@unique([userId, postId]) // this prevents same user liking post twice
+  @@index([userId, postId]) // composite index for faster queries
 }
 
 model Follows {
@@ -92,8 +92,8 @@ model Follows {
   follower  User @relation("follower", fields: [followerId], references: [id], onDelete: Cascade)
   following User @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
 
-  @@id([followerId, followingId])
-  @@index([followerId, followingId])
+  @@id([followerId, followingId]) // composite primary key prevents duplicate follows
+  @@index([followerId, followingId]) // composite index for faster queries
 }
 
 model Notification {
