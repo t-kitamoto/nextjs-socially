@@ -154,7 +154,7 @@ export async function toggleFollow(targetUserId: string) {
     revalidatePath('/');
     return { success: true };
   } catch (error) {
-    console.log('Eooro in toddleFollow', error);
+    console.log('Error in toddleFollow', error);
     return { success: false, error: 'Error toggling follow' };
   }
 }
