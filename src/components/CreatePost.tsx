@@ -10,6 +10,7 @@ import { Button } from './ui/button';
 import { createPost } from '@/actions/post.action';
 import toast from 'react-hot-toast';
 import ImageUpload from './ImageUpload';
+import '@uploadthing/react/styles.css';
 
 function CreatePost() {
   const { user } = useUser();
