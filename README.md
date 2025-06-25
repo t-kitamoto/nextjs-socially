@@ -23,7 +23,8 @@ https://nextjs-socially-eta.vercel.app/
 - Vercel（デプロイ）
 
 ---
-
+![ホーム画面](https://github.com/t-kitamoto/nextjs-socially/blob/main/public/sample.png)
+---
 ## 学習内容
 
 - SNSの基本構造を学習
