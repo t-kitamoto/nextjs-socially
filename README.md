@@ -24,6 +24,7 @@ https://nextjs-socially-eta.vercel.app/
 
 ---
 ![ホーム画面](https://github.com/t-kitamoto/nextjs-socially/blob/main/public/sample.png)
+
 ---
 ## 学習内容
 
